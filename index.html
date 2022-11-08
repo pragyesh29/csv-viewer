@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <input type="file" id="csvFileInput" class="input" onchange="handleFiles(this.files)" accept=".csv">
         <div id="addClearButton">
-            <button class="btnAddRow">Add Row</button>
-            <button class="btnClear" onclick="clearFunc()">Clear</button>
+            <button class="btn btnAddRow">Add Row</button>
+            <button class="btn btnClear" onclick="clearFunc()">Clear</button>
         </div>
         <div id="output"></div>
     </div>

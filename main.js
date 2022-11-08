@@ -40,6 +40,7 @@ function processData(rawData) {
     let tableHeader = lines[0];
     // Creating header of the table and since header is the top so we used 0 in insertRow function
     let headRow = table.createTHead().insertRow(0);
+    headRow.classList.add('headRow');
     for (let i = 0; i < tableHeader.length; i++) {
         let x = headRow.insertCell(i);
         x.innerHTML = tableHeader[i];
@@ -56,8 +57,10 @@ function processData(rawData) {
         }
     }
     document.getElementById('output').appendChild(table);
+
 }
 
 function clearFunc() {
-    document.getElementById('output').innerHTML = '';
+    location.reload();
 }
+
