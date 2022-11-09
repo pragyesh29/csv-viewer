@@ -9,12 +9,34 @@
 </head>
 <body>
     <div class="container">
-        <input type="file" id="csvFileInput" class="input" onchange="handleFiles(this.files)" accept=".csv">
-        <div id="addClearButton">
-            <button class="btn btnAddRow">Add Row</button>
-            <button class="btn btnClear" onclick="clearFunc()">Clear</button>
+        <div class="sub-container">
+            <input type="file" id="csvFileInput" class="input" onchange="handleFiles(this.files)" accept=".csv">
+            <div id="addClearButton">
+                <button class="btn" onclick="addNewDataRow()">Add Row</button>
+                <button class="btn" onclick="clearFunc()">Clear</button>
+            </div>
+            <div id="output"></div>
         </div>
-        <div id="output"></div>
+        <div class="sub-container form-container" id="form-container" style="display: none;">
+            <form id="addRowForm">
+                <div>
+                    <input type="text" class="input" name="id" placeholder="Id">
+                </div>
+                <div>
+                    <input type="text" class="input" name="Name" placeholder="Name">
+                </div>
+                <div>
+                    <input type="text" class="input" name="Age" placeholder="Age">
+                </div>
+                <div>
+                    <input type="text" class="input" name="Profession" placeholder="Profession">
+                </div>
+                <div>
+                    <input type="button" class="submit" value="Submit" onclick="getFormData()">
+                    <button class="submit" type="button" onclick="closeForm()">Close</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>

@@ -20,10 +20,9 @@ function errorHandler(event) {
     }
 }
 
-function processData(rawData) {
+function processData(rawData, flag) {
     let getBtnContent = document.getElementById('addClearButton');
     getBtnContent.style.display = 'block';
-
 
     // Regular expression to split whereever new line is encountered
     let allTextLines = rawData.split(/\n/);
@@ -32,7 +31,6 @@ function processData(rawData) {
         let oneRow = allTextLines.shift();
         lines.push(oneRow.split(','));
     }
-
     // Rendering data by creating table element
     document.getElementById('output').innerHTML = '';
     let table = document.createElement('table');
@@ -60,7 +58,29 @@ function processData(rawData) {
 
 }
 
+// Clear the presented data
 function clearFunc() {
     location.reload();
 }
 
+// Open the form
+function addNewDataRow() {
+    document.getElementById('form-container').style.display = 'block';
+}
+
+// Close the form
+function closeForm() {
+    document.getElementById('form-container').style.display = 'none';
+}
+
+// Get Form data filled by user
+function getFormData() {
+    const form = document.getElementById('addRowForm');
+    const formReader = new FormData(form);
+    let arr = [];
+    for (const [key, value] of formReader) {
+        arr.push(value);
+    }
+    closeForm();
+    console.log(arr);
+}
