@@ -67,8 +67,16 @@ function processData(rawData) {
     document.getElementById('output').appendChild(table);
 }
 
+function closeDynamicFormContent() {
+    const element = document.getElementById('addRowForm');
+    while (element.hasChildNodes()) {
+        element.removeChild(element.firstChild);
+    }
+}
+
 // Clear the presented data
 function clearFunc() {
+    closeDynamicFormContent();
     location.reload();
 }
 
@@ -98,6 +106,7 @@ function addNewDataRow() {
 
 // Close the form
 function closeForm() {
+    closeDynamicFormContent();
     document.getElementById('addRowForm').style.display = 'none';
     document.getElementById('form-container').style.zIndex = '-1';
 }
@@ -113,5 +122,6 @@ function getFormData() {
         arr.push(value);
     }
     closeForm();
+    closeDynamicFormContent();
     console.log(arr);
 }
