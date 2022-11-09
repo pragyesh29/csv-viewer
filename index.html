@@ -17,20 +17,9 @@
             </div>
             <div id="output"></div>
         </div>
-        <div class="sub-container form-container" id="form-container" style="display: none;">
-            <form id="addRowForm">
-                <div>
-                    <input type="text" class="input" name="id" placeholder="Id">
-                </div>
-                <div>
-                    <input type="text" class="input" name="Name" placeholder="Name">
-                </div>
-                <div>
-                    <input type="text" class="input" name="Age" placeholder="Age">
-                </div>
-                <div>
-                    <input type="text" class="input" name="Profession" placeholder="Profession">
-                </div>
+        <div class="sub-container form-container" id="form-container">
+            <form id="addRowForm" style="display: none;">
+                <!-- Dynamic Data will be inserted here-->
                 <div>
                     <input type="button" class="submit" value="Submit" onclick="getFormData()">
                     <button class="submit" type="button" onclick="closeForm()">Close</button>

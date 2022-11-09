@@ -1,3 +1,6 @@
+// Global variable to store count of number of attributes (columns) the table will have.
+let globalHeadFileds = [];
+
 function handleFiles(files) {
     // Creating instance of FileReader to be able to read file selected by user
     var reader = new FileReader();
@@ -20,7 +23,7 @@ function errorHandler(event) {
     }
 }
 
-function processData(rawData, flag) {
+function processData(rawData) {
     let getBtnContent = document.getElementById('addClearButton');
     getBtnContent.style.display = 'block';
 
@@ -31,6 +34,12 @@ function processData(rawData, flag) {
         let oneRow = allTextLines.shift();
         lines.push(oneRow.split(','));
     }
+
+    // initializing global variable to store number of attributes of one row in table.
+    lines[0].forEach(element => {
+        globalHeadFileds.push(element)
+    });
+
     // Rendering data by creating table element
     document.getElementById('output').innerHTML = '';
     let table = document.createElement('table');
@@ -43,6 +52,7 @@ function processData(rawData, flag) {
         let x = headRow.insertCell(i);
         x.innerHTML = tableHeader[i];
     }
+    // shift() function returns the first element of the array, here array is modified itself and first element is removed.
     lines.shift();
     for (let i = 0; i < lines.length; i++) {
         // -1 inserts row at last of the table
@@ -64,17 +74,39 @@ function clearFunc() {
 
 // Open the form
 function addNewDataRow() {
-    document.getElementById('form-container').style.display = 'block';
+    // Creating form with dynamic nature
+    // Following is the one view which will be stacked according to the data in the file of .csv type
+    // <div>
+    //      <input type="text" class="input" name=<dynamic> placeholder=<dynamic>/>
+    // </div>
+
+    const form = document.getElementById('addRowForm');
+    for (let i = 0; i < globalHeadFileds.length; i++) {
+        let div = document.createElement('div');
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.name = globalHeadFileds[i];
+        input.classList.add('input');
+        input.placeholder = globalHeadFileds[i];
+        div.appendChild(input);
+        form.appendChild(div);
+    }
+
+    form.style.display = 'flex';
+    document.getElementById('form-container').style.zIndex = '1';
 }
 
 // Close the form
 function closeForm() {
-    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('addRowForm').style.display = 'none';
+    document.getElementById('form-container').style.zIndex = '-1';
 }
 
 // Get Form data filled by user
 function getFormData() {
     const form = document.getElementById('addRowForm');
+    // Using FormData Web Api to retrieve the data entered by user through form
+    // The ouput of the array of data entered will be displayed at console when form is submitted
     const formReader = new FormData(form);
     let arr = [];
     for (const [key, value] of formReader) {
