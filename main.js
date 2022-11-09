@@ -55,7 +55,6 @@ function processData(rawData, flag) {
         }
     }
     document.getElementById('output').appendChild(table);
-
 }
 
 // Clear the presented data
